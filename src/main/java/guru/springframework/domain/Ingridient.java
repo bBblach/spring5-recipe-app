@@ -1,7 +1,6 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
-
 import java.math.BigDecimal;
 
 @Entity
@@ -14,7 +13,7 @@ public class Ingridient {
         private BigDecimal amount;
         @ManyToOne
         private Recipe recipe;
-        @OneToOne
+        @OneToOne(fetch = FetchType.EAGER)
         private UnitOfMeausre uom;
     public Long getId() {
         return id;
