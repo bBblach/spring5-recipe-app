@@ -1,6 +1,7 @@
 package guru.springframework.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -21,6 +22,12 @@ public class Recipe {
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe") // 'recepie' is the property name on child class
+    /*
+    * so that defines a relationship from recepie class. This recepie will be stored on a property on the child
+    * or the set of ingridients on each object of ingridient is going to be a property called recepie
+    * */
+    private Set<Ingridient> ingridients;
 
     public Long getId() {
         return id;
