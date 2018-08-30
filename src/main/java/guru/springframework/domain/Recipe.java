@@ -15,19 +15,29 @@ public class Recipe {
     private  String source;
     private String url;
     private  String directions;
-    //todo add
-    //private Dificulty dificulty
+    @Enumerated(value = EnumType.STRING)
+    private Dificulty dificulty;
     @Lob
     private Byte [] image;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe") // 'recepie' is the property name on child class
+    private Set<Ingredient> ingredients;
     /*
     * so that defines a relationship from recepie class. This recepie will be stored on a property on the child
     * or the set of ingridients on each object of ingridient is going to be a property called recepie
     * */
-    private Set<Ingridient> ingridients;
+
+    @ManyToMany
+    @JoinTable(
+        name="recipe_category",
+        joinColumns = @JoinColumn(name = "recipe_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories;
+
+    /************/
 
     public Long getId() {
         return id;
@@ -107,5 +117,29 @@ public class Recipe {
 
     public void setNotes(Notes notes) {
         this.notes = notes;
+    }
+
+    public Dificulty getDificulty() {
+        return dificulty;
+    }
+
+    public void setDificulty(Dificulty dificulty) {
+        this.dificulty = dificulty;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
