@@ -12,11 +12,23 @@
 
     <table>
         <thead>
-
+            <tr>description</tr>
+            <tr>prepTime</tr>
+            <tr>cookTime</tr>
+            <tr>servings</tr>
+            <tr>directions</tr>
+            <tr>dificulty</tr>
+            <tr>notes</tr>
         </thead>
         <tbody>
         <tr th:each="recipe : ${recipes}">
             <td th:text="${recipe.description}">description</td>
+            <td th:text="${recipe.prepTime}"></td>
+            <td th:text="${recipe.cookTime}"></td>
+            <td th:text="${recipe.servings}"></td>
+            <td th:text="${recipe.directions}"></td>
+            <td th:text="${recipe.dificulty}"></td>
+            <td th:text="${recipe.notes}"></td>
         </tr>
         </tbody>
     </table>

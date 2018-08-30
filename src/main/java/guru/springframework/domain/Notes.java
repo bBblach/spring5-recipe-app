@@ -10,7 +10,7 @@ public class Notes {
     @OneToOne // we dont add cascade because f.e if we delete notes we dont want to delete recepie
     private  Recipe recipe;
     @Lob // normaly in spring you can storne like 250 characters max, with Lob annotation limitation is removed
-    private String recepieNotes;
+    private String recipeNotes;
 
 
     public Long getId() {
@@ -29,11 +29,11 @@ public class Notes {
         this.recipe = recipe;
     }
 
-    public String getRecepieNotes() {
-        return recepieNotes;
+    public String getRecipeNotes() {
+        return recipeNotes;
     }
 
-    public void setRecepieNotes(String recepieNotes) {
-        this.recepieNotes = recepieNotes;
+    public void setRecipeNotes(String recipeNotes) {
+        this.recipeNotes = recipeNotes;
     }
 }

@@ -1,6 +1,5 @@
 package guru.springframework;
 
-import guru.springframework.domain.Recipe;
 import guru.springframework.repositories.CategoryRepository;
 import guru.springframework.repositories.UnitOfMeasureRepository;
 import guru.springframework.services.RecipeService;
@@ -8,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class HomeContorller {
@@ -30,9 +26,8 @@ public class HomeContorller {
 
     @RequestMapping({"","/","/index"})
     public String getHome(Model model){
-        List<Recipe> recipes = new ArrayList<>();
-        recipeService.getAllRecipes().forEach(recipes::add);
-        model.addAttribute("recipes", recipes);
+
+        model.addAttribute("recipes", recipeService.getRecipes());
         return "home";
     }
 }

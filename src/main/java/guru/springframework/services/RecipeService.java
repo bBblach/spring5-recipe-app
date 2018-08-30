@@ -1,22 +1,10 @@
 package guru.springframework.services;
 
 import guru.springframework.domain.Recipe;
-import guru.springframework.repositories.RecipeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-@Service
-public class RecipeService {
+import java.util.Set;
 
-    private RecipeRepository recipeRepository;
+public interface RecipeService {
 
-    @Autowired
-    public RecipeService(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
-    }
-
-
-    public Iterable<Recipe> getAllRecipes(){
-        return recipeRepository.findAll();
-    }
+    Set<Recipe> getRecipes();
 }
