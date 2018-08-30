@@ -1,0 +1,41 @@
+package guru.springframework;
+
+import guru.springframework.domain.Category;
+import guru.springframework.domain.UnitOfMeasure;
+import guru.springframework.repositories.CategoryRepository;
+import guru.springframework.repositories.UnitOfMeasureRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Optional;
+
+@Controller
+public class HomeContorller {
+
+    private final CategoryRepository categoryRepository;
+    private final UnitOfMeasureRepository unitOfMeasureRepository;
+    @Autowired
+    public HomeContorller(CategoryRepository categoryRepository, UnitOfMeasureRepository unitOfMeasureRepository) {
+        this.categoryRepository = categoryRepository;
+        this.unitOfMeasureRepository = unitOfMeasureRepository;
+    }
+
+
+
+    @RequestMapping({"","/","/index"})
+    public String getHome(Model model){
+/*          Jak tak zrobię to obiekt jest typu Optional i nie mogę zczytać pól z klasty DEscription
+        model.addAttribute("mex" , categoryRepository.findByDescription("Mexican"));
+*/
+        Optional<Category> mex = categoryRepository.findByDescription("Mexican");
+        Optional<UnitOfMeasure> teaspoon = unitOfMeasureRepository.findByDescription("Teaspoon");
+        System.out.println("1.  Optional<Category> mex " + mex.getClass() );
+        System.out.println("2.  mex.get() class is : " + mex.get().getClass());
+        System.out.println("3.  Cat id is " + mex.get().getDescription());
+
+        model.addAttribute("mexCategory", mex.get());
+        return "home";
+    }
+}
